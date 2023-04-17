@@ -17,6 +17,16 @@ const slides = [
 	}
 ]
 
+let slide = 0;
+function changeSlide(sens) {
+	num = num + sens;
+	if (num < 0) 
+	num = slides.length -1;
+	if (slide > slides.length -1)
+	num = 0;
+	document.getElementById("banner").src = slide[num];
+}
+
 const before = document.querySelector(".arrow_left");
 const after = document.querySelector(".arrow_right");
 
