@@ -21,9 +21,10 @@ const slides = [
 	}
 ]
 
+
 // Changement de l'image 
-// Numéro de la slide
-let numero = 0; // Numéro de la première slide
+// Numéro de la première slide
+let numero = 0; 
 
 function ChangeSlide(sens) {
 	numero = numero + sens; 
@@ -49,6 +50,5 @@ function ChangeSlide(sens) {
 	slideText.innerHTML = slides[numero].tagLine;
 
 	// Changement du dot en fonction de l'image du slide
-	
-}
 
+}
