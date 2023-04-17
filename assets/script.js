@@ -21,19 +21,34 @@ const slides = [
 	}
 ]
 
-let numero = 0;
+// Changement de l'image 
+// Numéro de la slide
+let numero = 0; // Numéro de la première slide
+
 function ChangeSlide(sens) {
-	numero = numero + sens;
+	numero = numero + sens; 
+	// Boucle pour faire revenir le slider à la première slide
+	// au clic sur la dernière slide
 	if (numero > slides.length - 1) {
 		numero = 0;
 	}
+	// Boucle pour faire revenir le slider à la dernière slide
+	// au clic sur la première slide
 	if (numero < 0) {
 		numero = slides.length - 1;
 	}
+	// Changement de la source de l'image au clic
 	document.getElementById("slide").src = "./assets/images/slideshow/" + slides[numero].image;
 
-	const slideText = document.getElementById("slide_text");
-	let contenu = slideText.innerHTML;
+	// Changement du texte en fonction de l'image du slide
+	// Récupère le paragraphe #slide_text
+	const slideText = document.getElementById("slide_text"); 
+	// Récupère le contenu HTML du paragraphe
+	let contenu = slideText.innerHTML; 
+	// Remplacer le contenu HTML du paragraphe
 	slideText.innerHTML = slides[numero].tagLine;
+
+	// Changement du dot en fonction de l'image du slide
+	
 }
 
