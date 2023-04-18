@@ -28,7 +28,6 @@ let currentSlide = 0;
 // Sauvegarde le tableau des dots dans la variables dots
 let dots = document.getElementsByClassName("dot");
 
-
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
 	// Boucle pour faire revenir le slider à la première slide
@@ -48,19 +47,18 @@ function ChangeSlide(moveTo) {
 	// Changement du texte en fonction de l'image du slide
 	// Récupère le paragraphe #slide_text
 	const slideText = document.getElementById("slide_text");
-	// Récupère le contenu HTML du paragraphe
-	let contenu = slideText.innerHTML;
 	// Remplacer le contenu HTML du paragraphe
 	slideText.innerHTML = slides[currentSlide].tagLine;
+
+	dots[currentSlide].classList.toggle('dot_selected');
+	
 }
 
 // Au clic sur la flèche droite, slide suivant
 const next = document.getElementById("next");
 next.addEventListener("click", function () {
     ChangeSlide(+1);
-	dots[currentSlide].classList.toggle("dot_selected");
-	dots[currentSlide-1].classList.toggle("dot_selected");
-  },
+	}
 );
 
 
@@ -68,7 +66,5 @@ next.addEventListener("click", function () {
 const prev = document.getElementById("prev");
 prev.addEventListener("click", function () {
     ChangeSlide(-1);
-	dots[currentSlide].classList.toggle("dot_selected");
-	dots[currentSlide+1].classList.toggle("dot_selected");
-  },
+	}
 );
