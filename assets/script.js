@@ -51,7 +51,7 @@ function ChangeSlide(moveTo) {
 	slideText.innerHTML = slides[currentSlide].tagLine;
 
 	dots[currentSlide].classList.toggle('dot_selected');
-	dots[(currentSlide - 1)].classList.toggle('dot_selected');
+	dots[currentSlide - 1].classList.toggle('dot_selected');
 }
 
 // Au clic sur la flèche droite, slide suivant
