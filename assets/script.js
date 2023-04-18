@@ -24,21 +24,26 @@ const slides = [
 
 // Changement de l'image 
 // Numéro de la première slide
-let numero = 0; 
-function ChangeSlide(sens) {
-	numero = numero + sens; 
+let currentSlide = 0; 
+// Sauvegarde le tableau des dots dans la variables dots
+let dots = document.getElementsByClassName("dot");
+
+
+function ChangeSlide(moveTo) {
+	currentSlide = currentSlide + moveTo; 
 	// Boucle pour faire revenir le slider à la première slide
 	// au clic sur la dernière slide
-	if (numero > slides.length - 1) {
-		numero = 0;
+	if (currentSlide > slides.length - 1) {
+		currentSlide = 0;
+		
 	}
 	// Boucle pour faire revenir le slider à la dernière slide
 	// au clic sur la première slide
-	if (numero < 0) {
-		numero = slides.length - 1;
+	if (currentSlide < 0) {
+		currentSlide = slides.length - 1;
 	}
 	// Changement de la source de l'image au clic
-	document.getElementById("slide").src = "./assets/images/slideshow/" + slides[numero].image;
+	document.getElementById("slide").src = "./assets/images/slideshow/" + slides[currentSlide].image;
 
 	// Changement du texte en fonction de l'image du slide
 	// Récupère le paragraphe #slide_text
@@ -46,22 +51,24 @@ function ChangeSlide(sens) {
 	// Récupère le contenu HTML du paragraphe
 	let contenu = slideText.innerHTML;
 	// Remplacer le contenu HTML du paragraphe
-	slideText.innerHTML = slides[numero].tagLine;
-
-	// Changement du dot en fonction de l'image du slide
-	
+	slideText.innerHTML = slides[currentSlide].tagLine;
 }
 
 // Au clic sur la flèche droite, slide suivant
 const next = document.getElementById("next");
-next.addEventListener("click",function () {
+next.addEventListener("click", function () {
     ChangeSlide(+1);
+	dots[currentSlide].classList.toggle("dot_selected");
+	dots[currentSlide-1].classList.toggle("dot_selected");
   },
 );
 
+
 // Au clic sur la flèche gauche, slide précédent
 const prev = document.getElementById("prev");
-prev.addEventListener("click",function () {
+prev.addEventListener("click", function () {
     ChangeSlide(-1);
+	dots[currentSlide].classList.toggle("dot_selected");
+	dots[currentSlide+1].classList.toggle("dot_selected");
   },
 );
