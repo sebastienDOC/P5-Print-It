@@ -25,7 +25,6 @@ const slides = [
 // Changement de l'image 
 // Numéro de la première slide
 let numero = 0; 
-
 function ChangeSlide(sens) {
 	numero = numero + sens; 
 	// Boucle pour faire revenir le slider à la première slide
@@ -43,12 +42,26 @@ function ChangeSlide(sens) {
 
 	// Changement du texte en fonction de l'image du slide
 	// Récupère le paragraphe #slide_text
-	const slideText = document.getElementById("slide_text"); 
+	const slideText = document.getElementById("slide_text");
 	// Récupère le contenu HTML du paragraphe
-	let contenu = slideText.innerHTML; 
+	let contenu = slideText.innerHTML;
 	// Remplacer le contenu HTML du paragraphe
 	slideText.innerHTML = slides[numero].tagLine;
 
 	// Changement du dot en fonction de l'image du slide
-
+	
 }
+
+// Au clic sur la flèche droite, slide suivant
+const next = document.getElementById("next");
+next.addEventListener("click",function () {
+    ChangeSlide(+1);
+  },
+);
+
+// Au clic sur la flèche gauche, slide précédent
+const prev = document.getElementById("prev");
+prev.addEventListener("click",function () {
+    ChangeSlide(-1);
+  },
+);
