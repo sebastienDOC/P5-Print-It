@@ -21,12 +21,24 @@ const slides = [
 	}
 ]
 
-
-// Changement de l'image 
 // Numéro de la première slide
 let currentSlide = 0; 
 // Sauvegarde le tableau des dots dans la variables dots
 let dots = document.getElementsByClassName("dot");
+
+// Au clic sur la flèche droite, slide suivant
+const next = document.getElementById("next");
+next.addEventListener("click", function () {
+    ChangeSlide(+1);
+	},
+);
+
+// Au clic sur la flèche gauche, slide précédent
+const prev = document.getElementById("prev");
+prev.addEventListener("click", function () {
+    ChangeSlide(-1);
+	}
+);
 
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
@@ -56,19 +68,18 @@ function ChangeSlide(moveTo) {
 	}
 	// Ajoute "dot_selected" au dot correspondant à la slide
 	dots[currentSlide].classList.add("dot_selected");
+
+	// Animation à chaque clic
+	banner.animate([
+		{opacity: "0.4"}, 
+		{opacity: "1"}
+	],
+		{duration: 500, fill:'forwards'}
+	);
 }
 
-// Au clic sur la flèche droite, slide suivant
-const next = document.getElementById("next");
-next.addEventListener("click", function () {
-    ChangeSlide(+1);
-	}
-);
-
-
-// Au clic sur la flèche gauche, slide précédent
-const prev = document.getElementById("prev");
-prev.addEventListener("click", function () {
-    ChangeSlide(-1);
-	}
+let myInterval = window.setInterval(function () {
+	ChangeSlide(+1);  
+	}, 
+	5000
 );
