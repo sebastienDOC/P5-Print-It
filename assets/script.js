@@ -23,8 +23,6 @@ const slides = [
 
 // Numéro de la première slide
 let currentSlide = 0; 
-// Sauvegarde le tableau des dots dans la variables dots
-let dots = document.getElementsByClassName("dot");
 
 // Au clic sur la flèche droite, slide suivant
 const next = document.getElementById("next");
@@ -41,12 +39,14 @@ prev.addEventListener("click", function () {
 );
 
 function ChangeSlide(moveTo) {
+	// Sauvegarde le tableau des dots dans la variables dots
+	let dots = document.getElementsByClassName("dot");
+
 	currentSlide = currentSlide + moveTo; 
 	// Boucle pour faire revenir le slider à la première slide
 	// au clic sur la dernière slide
 	if (currentSlide > slides.length - 1) {
 		currentSlide = 0;
-		
 	}
 	// Boucle pour faire revenir le slider à la dernière slide
 	// au clic sur la première slide
@@ -77,7 +77,6 @@ function ChangeSlide(moveTo) {
 	],
 		{duration: 800, fill:'forwards'},
 	);
-	
 }
 
 /*
