@@ -70,16 +70,20 @@ function ChangeSlide(moveTo) {
 	dots[currentSlide].classList.add("dot_selected");
 
 	// Animation à chaque clic
-	banner.animate([
-		{opacity: "0.4"}, 
-		{opacity: "1"}
+	banner.animate(
+		[
+		{opacity:'0.6'}, 
+		{opacity:'1'}
 	],
-		{duration: 500, fill:'forwards'}
+		{duration: 800, fill:'forwards'},
 	);
+	
 }
 
+/*
 let myInterval = window.setInterval(function () {
 	ChangeSlide(+1);  
 	}, 
 	5000
 );
+*/
