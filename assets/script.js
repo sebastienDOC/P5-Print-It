@@ -50,8 +50,12 @@ function ChangeSlide(moveTo) {
 	// Remplacer le contenu HTML du paragraphe
 	slideText.innerHTML = slides[currentSlide].tagLine;
 
-	dots[currentSlide].classList.toggle('dot_selected');
-	dots[currentSlide - 1].classList.toggle('dot_selected');
+	// Retire "dot_selected" de tous les dots
+	for(let i = 0; i < dots.length; i++) {
+		dots[i].classList.remove("dot_selected");
+	}
+	// Ajoute "dot_selected" au dot correspondant à la slide
+	dots[currentSlide].classList.add("dot_selected");
 }
 
 // Au clic sur la flèche droite, slide suivant
