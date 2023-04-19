@@ -40,6 +40,19 @@ prev.addEventListener("click", function () {
 	}
 );
 
+function addDots() {
+	const dots = document.querySelector('.dots');
+	for (let i = 0; i < slides.length; i++) {
+		const dot = document.createElement('span');
+		dot.classList.add('dot');
+		dots.appendChild(dot);
+		if (i == 0) {
+			dots.children[i].classList.add('dot_selected');
+		}
+	}
+}
+addDots();
+
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
 	// Boucle pour faire revenir le slider à la première slide
