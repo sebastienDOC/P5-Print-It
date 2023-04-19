@@ -40,6 +40,7 @@ prev.addEventListener("click", function () {
 	}
 );
 
+// Ajoute un dot par slide
 function addDots() {
 	const dots = document.querySelector('.dots');
 	for (let i = 0; i < slides.length; i++) {
