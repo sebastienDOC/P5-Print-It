@@ -21,11 +21,6 @@ const slides = [
 	}
 ]
 
-// Numéro de la première slide
-let currentSlide = 0; 
-// Sauvegarde le tableau des dots dans la variables dots
-let dots = document.getElementsByClassName("dot");
-
 // Au clic sur la flèche droite, slide suivant
 const next = document.getElementById("next");
 next.addEventListener("click", function () {
@@ -63,6 +58,9 @@ function ChangeText() {
 	slideText.innerHTML = slides[currentSlide].tagLine;
 }
 
+// Sauvegarde le tableau des dots dans la variables dots
+let dots = document.getElementsByClassName("dot");
+
 function ChangeDot() {
 	// Retire "dot_selected" de tous les dots
 	for(let i = 0; i < dots.length; i++) {
@@ -71,6 +69,9 @@ function ChangeDot() {
 	// Ajoute "dot_selected" au dot correspondant à la slide
 	dots[currentSlide].classList.add("dot_selected");
 }
+
+// Numéro de la première slide
+let currentSlide = 0; 
 
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
