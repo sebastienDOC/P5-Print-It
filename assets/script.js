@@ -47,12 +47,30 @@ function addDots() {
 		const dot = document.createElement('span');
 		dot.classList.add('dot');
 		dots.appendChild(dot);
+		// Ajoute 'dot_selected' au premier dot au chargement de la page
 		if (i == 0) {
 			dots.children[i].classList.add('dot_selected');
 		}
 	}
 }
 addDots();
+
+function ChangeText() {
+	// Changement du texte en fonction de l'image du slide
+	// Récupère le paragraphe #slide_text
+	const slideText = document.getElementById("slide_text");
+	// Remplacer le contenu HTML du paragraphe
+	slideText.innerHTML = slides[currentSlide].tagLine;
+}
+
+function ChangeDot() {
+	// Retire "dot_selected" de tous les dots
+	for(let i = 0; i < dots.length; i++) {
+		dots[i].classList.remove("dot_selected");
+	}
+	// Ajoute "dot_selected" au dot correspondant à la slide
+	dots[currentSlide].classList.add("dot_selected");
+}
 
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
@@ -69,27 +87,17 @@ function ChangeSlide(moveTo) {
 	// Changement de la source de l'image au clic
 	document.getElementById("slide").src = "./assets/images/slideshow/" + slides[currentSlide].image;
 
-	// Changement du texte en fonction de l'image du slide
-	// Récupère le paragraphe #slide_text
-	const slideText = document.getElementById("slide_text");
-	// Remplacer le contenu HTML du paragraphe
-	slideText.innerHTML = slides[currentSlide].tagLine;
-
-	// Retire "dot_selected" de tous les dots
-	for(let i = 0; i < dots.length; i++) {
-		dots[i].classList.remove("dot_selected");
-	}
-	// Ajoute "dot_selected" au dot correspondant à la slide
-	dots[currentSlide].classList.add("dot_selected");
-
 	// Animation à chaque clic
 	banner.animate(
 		[
-		{opacity:'0.6'}, 
-		{opacity:'1'}
-	],
+			{opacity:'0.6'}, 
+			{opacity:'1'}
+		],
 		{duration: 800, fill:'forwards'},
 	);
+
+	ChangeText();
+	ChangeDot();
 }
 
 /*
