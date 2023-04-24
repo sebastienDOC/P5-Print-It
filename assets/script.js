@@ -37,30 +37,53 @@ prev.addEventListener("click", function () {
 
 // Ajoute un dot par slide
 function addDots() {
-	const dots = document.querySelector('.dots');
+	const dots = document.querySelector(".dots");
 	for (let i = 0; i < slides.length; i++) {
-		const dot = document.createElement('span');
-		dot.classList.add('dot');
+		const dot = document.createElement("span");
+		dot.classList.add("dot");
 		dots.appendChild(dot);
+		// Créer un ID unique par dot
+		dot.setAttribute("id", `slide${i}`);
 		// Ajoute 'dot_selected' au premier dot au chargement de la page
 		if (i == 0) {
-			dots.children[i].classList.add('dot_selected');
+			dots.children[i].classList.add("dot_selected");
 		}
 	}
 }
 addDots();
 
-function ChangeText() {
-	// Changement du texte en fonction de l'image du slide
-	// Récupère le paragraphe #slide_text
-	const slideText = document.getElementById("slide_text");
-	// Remplacer le contenu HTML du paragraphe
-	slideText.innerHTML = slides[currentSlide].tagLine;
-}
+let activeDots = document.querySelectorAll(".dot");
+activeDots.forEach(activeDot => {
+	// Au clic sur un dot :
+	activeDot.addEventListener("click", event => {
+		// Retire "dot_selected" au précédent slide
+		document.querySelector(".dot.dot_selected").classList.remove("dot_selected");
+		// Ajoute "dot_selected" au slide
+		event.target.classList.add("dot_selected");
+		// Changement des slides au clic sur les dots
+		for(let i = 0; i < dots.length; i++) {
+			if (event.target.id == `slide${i}`){
+				document.getElementById("slide").src = "./assets/images/slideshow/" + slides[i].image;
+				document.getElementById("slide_text").innerHTML = slides[i].tagLine;
+				return currentSlide = i;
+			}
+		}
+	});
+	// Hover des dots
+	activeDot.addEventListener("mouseover", event => {
+		// Si la cible contiens une classe, cursor default
+		if (event.target.classList.contains("dot_selected")) {
+			event.target.style.cursor = "default";
+		// Sinon, cursor pointer
+		} else {
+			event.target.style.cursor = "pointer";
+		};
+	});
+});
 
 // Sauvegarde le tableau des dots dans la variables dots
 let dots = document.getElementsByClassName("dot");
-
+// Changement du dot en fonction de l'image du slide
 function ChangeDot() {
 	// Retire "dot_selected" de tous les dots
 	for(let i = 0; i < dots.length; i++) {
@@ -68,6 +91,14 @@ function ChangeDot() {
 	}
 	// Ajoute "dot_selected" au dot correspondant à la slide
 	dots[currentSlide].classList.add("dot_selected");
+}
+
+// Changement du texte en fonction de l'image du slide
+function ChangeText() {
+	// Récupère le paragraphe #slide_text
+	const slideText = document.getElementById("slide_text");
+	// Remplacer le contenu HTML du paragraphe
+	slideText.innerHTML = slides[currentSlide].tagLine;
 }
 
 // Numéro de la première slide
@@ -88,14 +119,16 @@ function ChangeSlide(moveTo) {
 	// Changement de la source de l'image au clic
 	document.getElementById("slide").src = "./assets/images/slideshow/" + slides[currentSlide].image;
 
+	/*
 	// Animation à chaque clic
 	banner.animate(
 		[
-			{opacity:'0.6'}, 
-			{opacity:'1'}
+			{opacity:"0.6"}, 
+			{opacity:"1"}
 		],
 		{duration: 800, fill:'forwards'},
 	);
+	*/
 
 	ChangeText();
 	ChangeDot();
