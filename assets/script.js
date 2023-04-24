@@ -65,19 +65,6 @@ activeDots.forEach(activeDot => {
 	});
 });
 
-let dots = document.getElementsByClassName("dot");
-function ChangeDot() {
-	for(let i = 0; i < dots.length; i++) {
-		dots[i].classList.remove("dot_selected");
-	}
-	dots[currentSlide].classList.add("dot_selected");
-}
-
-function ChangeText() {
-	const slideText = document.getElementById("slide_text");
-	slideText.innerHTML = slides[currentSlide].tagLine;
-}
-
 let currentSlide = 0; 
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
@@ -102,6 +89,19 @@ function ChangeSlide(moveTo) {
 
 	ChangeText();
 	ChangeDot();
+}
+
+let dots = document.getElementsByClassName("dot");
+function ChangeDot() {
+	for(let i = 0; i < dots.length; i++) {
+		dots[i].classList.remove("dot_selected");
+	}
+	dots[currentSlide].classList.add("dot_selected");
+}
+
+function ChangeText() {
+	const slideText = document.getElementById("slide_text");
+	slideText.innerHTML = slides[currentSlide].tagLine;
 }
 
 /*
