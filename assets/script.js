@@ -56,7 +56,6 @@ activeDots.forEach(activeDot => {
 			}
 		}
 	});
-
 	activeDot.addEventListener("mouseover", event => {
 		if (event.target.classList.contains("dot_selected")) {
 			event.target.style.cursor = "default";
@@ -78,7 +77,6 @@ function ChangeText() {
 	const slideText = document.getElementById("slide_text");
 	slideText.innerHTML = slides[currentSlide].tagLine;
 }
-
 
 let currentSlide = 0; 
 function ChangeSlide(moveTo) {
