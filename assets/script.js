@@ -84,9 +84,9 @@ function ChangeText() {
 
 // Optionnel
 // Ajout du clic sur les dots pour accès direct
-let activeDots = document.querySelectorAll(".dot");
-activeDots.forEach(activeDot => {
-	activeDot.addEventListener("click", event => {
+let selectedDots = document.querySelectorAll(".dot");
+selectedDots.forEach(selectedDot => {
+	selectedDot.addEventListener("click", event => {
 		document.querySelector(".dot.dot_selected").classList.remove("dot_selected");
 		event.target.classList.add("dot_selected");
 		for(let i = 0; i < dots.length; i++) {
@@ -97,7 +97,7 @@ activeDots.forEach(activeDot => {
 			}
 		}
 	});
-	activeDot.addEventListener("mouseover", event => {
+	selectedDot.addEventListener("mouseover", event => {
 		if (event.target.classList.contains("dot_selected")) {
 			event.target.style.cursor = "default";
 		} else {
