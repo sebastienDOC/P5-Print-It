@@ -43,28 +43,6 @@ function addDots() {
 }
 addDots();
 
-let activeDots = document.querySelectorAll(".dot");
-activeDots.forEach(activeDot => {
-	activeDot.addEventListener("click", event => {
-		document.querySelector(".dot.dot_selected").classList.remove("dot_selected");
-		event.target.classList.add("dot_selected");
-		for(let i = 0; i < dots.length; i++) {
-			if (event.target.id == `slide${i}`){
-				document.getElementById("slide").src = "./assets/images/slideshow/" + slides[i].image;
-				document.getElementById("slide_text").innerHTML = slides[i].tagLine;
-				return currentSlide = i;
-			}
-		}
-	});
-	activeDot.addEventListener("mouseover", event => {
-		if (event.target.classList.contains("dot_selected")) {
-			event.target.style.cursor = "default";
-		} else {
-			event.target.style.cursor = "pointer";
-		};
-	});
-});
-
 let currentSlide = 0; 
 function ChangeSlide(moveTo) {
 	currentSlide = currentSlide + moveTo; 
@@ -103,6 +81,30 @@ function ChangeText() {
 	const slideText = document.getElementById("slide_text");
 	slideText.innerHTML = slides[currentSlide].tagLine;
 }
+
+// Optionnel
+// Ajout du clic sur les dots pour accès direct
+let activeDots = document.querySelectorAll(".dot");
+activeDots.forEach(activeDot => {
+	activeDot.addEventListener("click", event => {
+		document.querySelector(".dot.dot_selected").classList.remove("dot_selected");
+		event.target.classList.add("dot_selected");
+		for(let i = 0; i < dots.length; i++) {
+			if (event.target.id == `slide${i}`){
+				document.getElementById("slide").src = "./assets/images/slideshow/" + slides[i].image;
+				document.getElementById("slide_text").innerHTML = slides[i].tagLine;
+				return currentSlide = i;
+			}
+		}
+	});
+	activeDot.addEventListener("mouseover", event => {
+		if (event.target.classList.contains("dot_selected")) {
+			event.target.style.cursor = "default";
+		} else {
+			event.target.style.cursor = "pointer";
+		};
+	});
+});
 
 /*
 let myInterval = window.setInterval(function () {
